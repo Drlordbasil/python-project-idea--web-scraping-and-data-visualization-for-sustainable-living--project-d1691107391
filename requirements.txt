@@ -1,0 +1,11 @@
+Based on the Python program provided, the following packages are required:
+
+- requests
+- beautifulsoup4
+- pandas
+- sklearn
+- matplotlib
+- plotly
+- tkinter
+- flask
+- tweepy
