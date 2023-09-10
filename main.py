@@ -129,20 +129,24 @@ class SustainableLivingApp(tk.Tk):
         self.title("Sustainable Living App")
         self.geometry("800x600")
 
-        self.label = tk.Label(self, text="Welcome to the Sustainable Living App", font=("Arial", 16))
+        self.label = tk.Label(
+            self, text="Welcome to the Sustainable Living App", font=("Arial", 16))
         self.label.pack(pady=10)
 
-        self.button_scrape = tk.Button(self, text="Scrape Data", command=self.scrape_data)
+        self.button_scrape = tk.Button(
+            self, text="Scrape Data", command=self.scrape_data)
         self.button_scrape.pack(pady=10)
 
-        self.button_analyze = tk.Button(self, text="Analyze Data", command=self.analyze_data)
+        self.button_analyze = tk.Button(
+            self, text="Analyze Data", command=self.analyze_data)
         self.button_analyze.pack(pady=10)
 
     def scrape_data(self):
         # Scrape data from websites
         products = scrape_products("https://example.com/eco-friendly-products")
         brands = scrape_brands("https://example.com/sustainable-brands")
-        recycling_programs = scrape_recycling_programs("https://example.com/recycling-programs")
+        recycling_programs = scrape_recycling_programs(
+            "https://example.com/recycling-programs")
 
         # Save data to a CSV file
         df_products = pd.DataFrame(products)
@@ -200,7 +204,8 @@ class SustainableLivingApp(tk.Tk):
         plt.legend()
         plt.show()
 
-        fig = go.Figure(data=go.Scatter(x=df_brands['name'], y=brand_visualization))
+        fig = go.Figure(data=go.Scatter(
+            x=df_brands['name'], y=brand_visualization))
         fig.show()
 
         app = Flask(__name__)
@@ -226,7 +231,8 @@ class RecommendationEngine:
     def recommend(self, query, n=5):
         # Calculate cosine similarity between query and data
         query_vector = self.tfidf_matrix.transform([query])
-        cosine_similarities = cosine_similarity(query_vector, self.tfidf_matrix).flatten()
+        cosine_similarities = cosine_similarity(
+            query_vector, self.tfidf_matrix).flatten()
         most_similar_indices = cosine_similarities.argsort()[:-n-1:-1]
 
         # Return recommended items
